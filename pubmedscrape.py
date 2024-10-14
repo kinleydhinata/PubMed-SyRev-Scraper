@@ -202,35 +202,6 @@ def get_years_back():
         except ValueError:
             print(f"{Fore.RED}Invalid input. Please enter a number.{Style.RESET_ALL}")
 
-def main():
-    email = "Input Email Here"
-    api_key = "Input API key Here"
-
-    print(f"{Fore.CYAN}Welcome to the Enhanced PubMed Systematic Review Scraper{Style.RESET_ALL}")
-    query = input(f"{Fore.CYAN}Enter your PubMed search query (you can use MeSH terms and boolean operators): {Style.RESET_ALL}")
-    years_back = get_years_back()
-    max_results = int(input(f"{Fore.CYAN}Enter the maximum number of results to retrieve: {Style.RESET_ALL}"))
-    output_file = input(f"{Fore.CYAN}Enter the output CSV filename (without .csv extension): {Style.RESET_ALL}")
-
-    try:
-        final_query = construct_pubmed_query(query, years_back)
-        print(f"{Fore.CYAN}Starting PubMed search with query: {final_query}{Style.RESET_ALL}")
-        results = search_pubmed(final_query, email, api_key, max_results)
-
-        if results:
-            print(f"{Fore.CYAN}Extracting information...{Style.RESET_ALL}")
-            extracted_data = [extract_info(record) for record in tqdm(results, desc="Extracting data", unit="record")]
-
-            print(f"{Fore.CYAN}Saving {len(extracted_data)} records to {output_file}.csv...{Style.RESET_ALL}")
-            save_to_csv(extracted_data, output_file)
-
-            print(f"{Fore.GREEN}Process completed successfully!{Style.RESET_ALL}")
-        else:
-            print(f"{Fore.YELLOW}No results were found or retrieved. Please check your query and try again.{Style.RESET_ALL}")
-    except Exception as e:
-        print(f"{Fore.RED}An unexpected error occurred: {str(e)}{Style.RESET_ALL}")
-        logger.exception("Detailed error information:")
-
 
 def remove_duplicates(data, threshold=90):
     """
