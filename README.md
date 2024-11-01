@@ -89,5 +89,5 @@ Contributions are welcome! Feel free to open issues or submit pull requests to e
 
 ## Contact
 
-For questions or suggestions, please contact [Your Name] at [Your Email].
+For questions or suggestions, please contact me at kinleydhinata@gmail.com
 
